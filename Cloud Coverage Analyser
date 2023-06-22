@@ -1,0 +1,31 @@
+from PIL import Image
+
+colour_start = (200, 200, 200)
+colour_end   = (266, 266, 266)
+n = 242
+
+#file name
+name = 'photo_X.jpg'
+
+#This while loop allows the program to run through the first 10 files
+while n <= 265:
+
+    #counter keeps track of the number of pixels which are the desired rgb
+    counter = 0
+    #rgb control the r,g,b value of desired pixel (makes them all the same)
+    rgb = 200
+
+    #changes the file name so runs through different file
+    im = Image.open(name.replace("X", str(n)))
+
+    #converts all pixel rgb values into string
+    pixel_values = list(im.getdata())
+
+    #makes sures runs rgb values until 256
+    for i in range(len(pixel_values)):
+        if pixel_values[i] > colour_start and pixel_values[i] < colour_end:
+            counter += 1
+
+    #prints number of desired pixels in file...
+    print(counter)
+    n += 1
